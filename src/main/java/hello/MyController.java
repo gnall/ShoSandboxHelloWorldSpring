@@ -32,7 +32,7 @@ public class MyController {
 	 */
 	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
 	public @ResponseBody String uploadFileHandler(@RequestParam("name") String name,
-			@RequestParam("file") MultipartFile file) {
+			@RequestParam("figle") MultipartFile file) {
 
 		if (!file.isEmpty()) {
 			try {
