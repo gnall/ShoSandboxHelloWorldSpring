@@ -4,6 +4,8 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -27,9 +29,12 @@ public class MyController {
 	public String uploadPageGet() {
 		return "index";
 	}
-	/**
-	 * Upload single file using Spring Controller
-	 */
+	
+	@RequestMapping(value = "/fbm", method = RequestMethod.GET)
+	public String fbmGet() {
+		return "fbm";
+	}
+	
 	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
 	public @ResponseBody String uploadFileHandler(@RequestParam("name") String name,
 			@RequestParam("figle") MultipartFile file) {
@@ -60,5 +65,15 @@ public class MyController {
 			return "You failed to upload " + name + " because the file was empty.";
 		}
 	}
-
+	
 }
+/*
+
+curl -X POST --header "Authorization: key=AAAAxqBnG_c:APA91bFNRJ2DQ69ZSslt1-E_Td1Mx40YLfe2ZuHq1AjF8dwMR-jJ7YA_cup7dt1mccMb0Syiukto2MBDMmho6Qecqi3Ka5P7-VpwfYPtcYMhWL1dnwNQGr5ep6PYNgMuHOmH3e5gr7FG" \
+--Header "Content-Type: application/json" \
+https://fcm.googleapis.com/fcm/send \
+-d "{\"to\":\"cUCjdzNNlaU:APA91bHCNehjrzcmOGw4K3ziPUSxXuyMKmFXZ9d-bjehWTmXz3mLjrxcrjzWtXlCfDqS4BkH7FvTrlbgs3LCtpZsU0GIa7R_vZ6Qbk0HJ1iUuW3Bw9AZ7umk4872rayse_vZiwSsQFOi\",\"notification\":{\"body\":\"Yellow\"},\"priority\":10}"
+
+
+
+*/
